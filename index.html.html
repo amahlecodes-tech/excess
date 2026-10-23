@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>XCESS — Event Operating System Prototype</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<aside class="sidebar">
+  <div class="logo">XC<span>ESS</span></div>
+  <div class="mode"><button class="active" data-role="organiser">Organiser</button><button data-role="command">Command</button></div>
+  <nav class="nav">
+    <button class="active" data-view="dashboard">▦ <span>Dashboard</span></button>
+    <button data-view="events">◈ <span>Events</span></button>
+    <button data-view="tickets">◇ <span>Tickets</span></button>
+    <button data-view="access">⌗ <span>Access Control</span></button>
+    <button data-view="cashless">◉ <span>Cashless</span></button>
+    <button data-view="security">● <span>Security</span></button>
+    <button data-view="traffic">◆ <span>Traffic</span></button>
+    <button data-view="joc">✦ <span>JOC / Safety</span></button>
+    <button data-view="vendors">▤ <span>Vendors</span></button>
+    <button data-view="reports">↗ <span>Reports</span></button>
+    <button data-view="medical">✚ <span>Medical</span></button>
+    <button data-view="map">◎ <span>Live Map</span></button>
+    <button data-view="audit">≡ <span>Audit Log</span></button>
+  </nav>
+</aside>
+<section class="content">
+<header class="top"><div style="display:flex;align-items:center;gap:14px"><button class="iconbtn" id="menuBtn" onclick="toggleMenu()" aria-label="Toggle menu">☰</button><div class="crumb">XCESS / <b id="crumb">Dashboard</b></div></div><div class="actions"></div></header>
+<main class="main">
+<section class="view active" id="dashboard">
+  <div class="title"><div><h1>Good afternoon, John.</h1><p>Here is what's happening across your events.</p></div><button class="primary" onclick="openModal()">+ Create event</button></div>
+  <div class="cards">
+    <div class="card metric"><div class="label">Tickets sold</div><div class="value">18,420</div><div class="trend">↑ 12.8% this week</div></div>
+    <div class="card metric"><div class="label">Revenue</div><div class="value">R4.82m</div><div class="trend">↑ 8.4% vs target</div></div>
+    <div class="card metric"><div class="label">Checked in</div><div class="value">16,892</div><div class="trend">91.7% attendance</div></div>
+    <div class="card metric"><div class="label">Cashless spend</div><div class="value">R3.20m</div><div class="trend">↑ R184 avg. spend</div></div>
+  </div>
+  <div class="grid2">
+    <div class="panel"><h3>Live ticket sales</h3><div class="chart"><div class="bar" style="height:38%"></div><div class="bar" style="height:52%"></div><div class="bar" style="height:44%"></div><div class="bar" style="height:65%"></div><div class="bar" style="height:58%"></div><div class="bar" style="height:72%"></div><div class="bar" style="height:63%"></div><div class="bar" style="height:88%"></div><div class="bar" style="height:76%"></div><div class="bar" style="height:95%"></div><div class="bar" style="height:82%"></div><div class="bar" style="height:100%"></div></div><div style="display:flex;justify-content:space-between;color:var(--muted);font-size:11px"><span>09:00</span><span>12:00</span><span>15:00</span><span>18:00</span><span>Now</span></div></div>
+    <div class="panel"><h3>Live operations</h3>
+      <div class="eventrow"><span>Security</span><span class="status">142 / 150</span></div><div class="eventrow"><span>Traffic</span><span class="status">48 / 50</span></div><div class="eventrow"><span>Medical</span><span class="status">6 active</span></div><div class="eventrow"><span>JOC</span><span class="status">Operational</span></div><div class="eventrow"><span>Open incidents</span><span class="status warn">2</span></div>
+    </div>
+  </div>
+  <div class="panel" style="margin-top:16px"><h3>Upcoming events</h3>
+    <div class="eventrow"><div><b>Summer Festival</b><div style="color:var(--muted);font-size:12px">14 Nov 2026 • Johannesburg</div></div><span class="status">Live setup</span></div>
+    <div class="eventrow"><div><b>Green City Run</b><div style="color:var(--muted);font-size:12px">22 Nov 2026 • Sandton</div></div><span class="status warn">Planning</span></div>
+    <div class="eventrow"><div><b>Corporate Summit</b><div style="color:var(--muted);font-size:12px">03 Dec 2026 • Midrand</div></div><span class="status">On sale</span></div>
+  </div>
+</section>
+<section class="view" id="events"><div class="title"><div><h1>Events</h1><p>Create and manage every event from one place.</p></div><button class="primary" onclick="openModal()">+ Create event</button></div><div class="cards"><div class="card"><div class="label">LIVE</div><h3>Summer Festival</h3><p>14 Nov • Johannesburg</p><button class="secondary" onclick="toast('Opening Summer Festival')">Manage</button></div><div class="card"><div class="label">PLANNING</div><h3>Green City Run</h3><p>22 Nov • Sandton</p><button class="secondary" onclick="toast('Opening Green City Run')">Manage</button></div><div class="card"><div class="label">ON SALE</div><h3>Corporate Summit</h3><p>03 Dec • Midrand</p><button class="secondary" onclick="toast('Opening Corporate Summit')">Manage</button></div></div></section>
+<section class="view" id="tickets"><div class="title"><div><h1>Tickets</h1><p>Ticket inventory, sales and access permissions.</p></div><button class="primary" onclick="toast('Ticket type creation opened')">+ Ticket type</button></div><div class="tickets"><div class="ticket"><div class="tag">GENERAL ADMISSION</div><h3>Summer Festival</h3><p>14 Nov 2026 • Gate 1–4</p><div class="price">R350</div><p>Capacity 15,000 • 12,840 sold</p><button class="secondary" onclick="toast('Ticket settings opened')">Manage</button></div><div class="ticket"><div class="tag">VIP</div><h3>Summer Festival</h3><p>14 Nov 2026 • VIP Gate</p><div class="price">R750</div><p>Capacity 3,000 • 2,640 sold</p><button class="secondary" onclick="toast('VIP settings opened')">Manage</button></div><div class="ticket"><div class="tag">VVIP</div><h3>Summer Festival</h3><p>14 Nov 2026 • VVIP Gate</p><div class="price">R1,500</div><p>Capacity 1,000 • 820 sold</p><button class="secondary" onclick="toast('VVIP settings opened')">Manage</button></div></div></section>
+<section class="view" id="access"><div class="title"><div><h1>Access Control</h1><p>Validate tickets and control zones in real time.</p></div><button class="primary" onclick="scan()">Simulate scan</button></div><div class="scanner"><h2>Gate Scanner</h2><div class="scanbox">▦<br><span>Camera / QR scanning area</span></div><div class="result" id="scanOut">✓ ACCESS GRANTED — JOHN SMITH<br><small style="color:#b5c3a2">General Admission • Gate 3 • 17:42</small></div></div></section>
+<section class="view" id="cashless"><div class="title"><div><h1>Cashless</h1><p>Monitor wallet loading, spend and settlements.</p></div><button class="primary" onclick="toast('Top-up station registered')">+ Top-up station</button></div><div class="cards"><div class="card metric"><div class="label">Wallets active</div><div class="value">12,481</div></div><div class="card metric"><div class="label">Loaded today</div><div class="value">R3.84m</div></div><div class="card metric"><div class="label">Spent today</div><div class="value">R3.20m</div></div><div class="card metric"><div class="label">Avg. spend</div><div class="value">R184</div></div></div><div class="panel" style="margin-top:16px"><h3>Recent cashless transactions</h3><table class="table"><tr><th>Time</th><th>Vendor</th><th>Product</th><th>Amount</th><th>Status</th></tr><tr><td>17:42</td><td>Bar 07</td><td>Soft drink</td><td>R30</td><td><span class="status">Approved</span></td></tr><tr><td>17:40</td><td>Food 12</td><td>Burger</td><td>R80</td><td><span class="status">Approved</span></td></tr><tr><td>17:38</td><td>Merch 03</td><td>T-shirt</td><td>R350</td><td><span class="status">Approved</span></td></tr></table></div></section>
+<section class="view" id="security"><div class="title"><div><h1>Security Command</h1><p>Deploy, monitor and manage event security.</p></div><button class="primary" onclick="toast('Security deployment created')">+ Deploy team</button></div><div class="ops"><div class="card"><div class="label">Deployed</div><div class="bigstatus">142 / 150</div></div><div class="card"><div class="label">Supervisors</div><div class="bigstatus">10</div></div><div class="card"><div class="label">Incidents</div><div class="bigstatus">12</div></div><div class="card"><div class="label">Open</div><div class="bigstatus" style="color:var(--warn)" id="secOpen">2</div></div></div><div class="grid2"><div class="panel"><h3>Live incidents</h3><div id="secFeed"></div></div><div class="panel"><h3>Deployment by zone</h3><div class="eventrow"><span>Gates</span><b>42</b></div><div class="eventrow"><span>Main Stage</span><b>36</b></div><div class="eventrow"><span>Parking</span><b>28</b></div><div class="eventrow"><span>VIP</span><b>18</b></div><div class="eventrow"><span>Backstage</span><b>18</b></div></div></div></section>
+<section class="view" id="traffic"><div class="title"><div><h1>Traffic Control</h1><p>Pointsmen, road closures and traffic incidents.</p></div><button class="primary" onclick="toast('Traffic deployment created')">+ Deployment</button></div><div class="cards"><div class="card metric"><div class="label">Pointsmen</div><div class="value">48 / 50</div></div><div class="card metric"><div class="label">Road closures</div><div class="value">4</div></div><div class="card metric"><div class="label">Incidents</div><div class="value">3</div></div><div class="card metric"><div class="label">Congestion zones</div><div class="value">2</div></div></div><div class="panel" style="margin-top:16px"><h3>Deployment</h3><table class="table"><tr><th>Zone</th><th>Team</th><th>Supervisor</th><th>Status</th></tr><tr><td>Gate 1</td><td>12</td><td>Johnson</td><td><span class="status">Active</span></td></tr><tr><td>Gate 2</td><td>10</td><td>Thabo</td><td><span class="status">Active</span></td></tr><tr><td>Sandton Drive</td><td>16</td><td>Lebo</td><td><span class="status warn">Heavy traffic</span></td></tr><tr><td>Parking</td><td>10</td><td>Sipho</td><td><span class="status">Active</span></td></tr></table></div><div class="panel" style="margin-top:16px"><h3>Road closures</h3><div id="closureList"></div></div></section>
+<section class="view" id="joc"><div class="title"><div><h1>JOC / Event Safety</h1><p>One operational picture for the event command team.</p></div><button class="primary" onclick="openIncident()">+ Log incident</button></div><div class="hero"><h2>SUMMER FESTIVAL — COMMAND</h2><p>Event status: <b style="color:var(--accent)">OPERATIONAL</b> • 14 Nov 2026 • Johannesburg</p><div class="chips"><span class="chip">Security ✓</span><span class="chip">Traffic ✓</span><span class="chip">Medical ✓</span><span class="chip">Fire ✓</span><span class="chip">Venue ✓</span><span class="chip">JOC ACTIVE</span></div></div><div class="ops"><div class="card"><div class="label">Attendance</div><div class="bigstatus">16,892</div></div><div class="card"><div class="label">Active incidents</div><div class="bigstatus" style="color:var(--warn)" id="jocActive">2</div></div><div class="card"><div class="label">Emergency route</div><div class="bigstatus" style="color:var(--accent)">CLEAR</div></div><div class="card"><div class="label">Evacuation</div><div class="bigstatus" style="color:var(--accent)">READY</div></div></div><div class="grid2"><div class="panel"><h3>JOC incident feed</h3><div id="jocFeed"></div></div><div class="panel"><h3>Digital JOC file</h3><div class="eventrow"><span>Event Safety Plan</span><span class="status">Ready</span></div><div class="eventrow"><span>Traffic Management Plan</span><span class="status">Ready</span></div><div class="eventrow"><span>Security Plan</span><span class="status">Ready</span></div><div class="eventrow"><span>Medical Plan</span><span class="status">Ready</span></div><div class="eventrow"><span>JOC Minutes</span><span class="status warn">2 pending</span></div></div></div><div class="grid2"><div class="panel"><h3>Master file approvals</h3><div id="fileList"></div></div><div class="panel"><div style="display:flex;justify-content:space-between;align-items:center"><h3>Situation reports</h3><button class="secondary" onclick="makeSitrep()">Generate</button></div><div id="sitrepList"></div></div></div></section>
+<section class="view" id="vendors"><div class="title"><div><h1>Vendors</h1><p>Monitor sales, POS activity and settlement.</p></div><button class="primary" onclick="toast('Vendor invitation sent')">+ Add vendor</button></div><div class="panel"><table class="table"><tr><th>Vendor</th><th>Category</th><th>Sales</th><th>Transactions</th><th>Status</th></tr><tr><td>Bar 07</td><td>Bar</td><td>R420,850</td><td>5,421</td><td><span class="status">Active</span></td></tr><tr><td>Food 12</td><td>Food</td><td>R280,420</td><td>3,814</td><td><span class="status">Active</span></td></tr><tr><td>Merch 03</td><td>Merchandise</td><td>R180,220</td><td>516</td><td><span class="status">Active</span></td></tr></table></div></section>
+<section class="view" id="reports"><div class="title"><div><h1>Reports</h1><p>Turn every event into measurable intelligence.</p></div><button class="primary" onclick="toast('Report generated')">Generate report</button></div><div class="cards"><div class="card"><h3>Event performance</h3><p style="color:var(--muted)">Attendance, revenue and ticket conversion.</p><button class="secondary" onclick="toast('Event report generated')">Generate</button></div><div class="card"><h3>Security report</h3><p style="color:var(--muted)">Incidents, response times and deployment.</p><button class="secondary" onclick="toast('Security report generated')">Generate</button></div><div class="card"><h3>Traffic report</h3><p style="color:var(--muted)">Deployments, closures and incidents.</p><button class="secondary" onclick="toast('Traffic report generated')">Generate</button></div><div class="card"><h3>Financial settlement</h3><p style="color:var(--muted)">Tickets, cashless and vendor settlement.</p><button class="secondary" onclick="toast('Settlement report generated')">Generate</button></div></div></section>
+<section class="view" id="mobile"><div class="title"><div><h1>XCESS Attendee App</h1><p>Customer-facing mobile experience.</p></div></div><div class="mobile"><div class="mhead"><b style="font-size:23px;letter-spacing:-1px">XC<span style="color:var(--accent)">ESS</span></b><span>♢</span></div><div class="mbody"><div style="color:var(--muted);font-size:12px;margin-bottom:8px">Good afternoon, Alex</div><div class="eventimg">SUMMER<br>FESTIVAL</div><h2 style="margin-bottom:4px">Your event is ready.</h2><div style="color:var(--muted);font-size:12px">14 November • Johannesburg</div><div class="walletbox"><div style="font-size:11px;font-weight:700">XCESS WALLET</div><div style="font-size:34px;font-weight:900">R850.00</div><button style="background:#071000;color:var(--accent);border:0;padding:8px 12px;border-radius:9px;font-weight:800" onclick="toast('Wallet top-up opened')">TOP UP</button></div><div class="panel"><div style="display:flex;justify-content:space-between"><b>Your ticket</b><span class="status">VALID</span></div><p style="color:var(--muted);font-size:12px">General Admission • Gate 3</p><div class="qr"></div><button class="primary" style="width:100%" onclick="toast('Ticket displayed')">SHOW TICKET</button></div></div><div class="mnav"><button class="active">⌂<br>Home</button><button>◈<br>Events</button><button>◇<br>Tickets</button><button>◉<br>Wallet</button></div></div></section>
+</main></section></div>
+
+<section class="view" id="medical"><div class="title"><div><h1>Medical &amp; Safety</h1><p>Log medical calls, dispatch resources and track hospital transfers.</p></div><button class="primary" onclick="openIncident('Medical')">+ Log medical call</button></div>
+<div class="cards"><div class="card metric"><div class="label">Calls today</div><div class="value" id="medCalls">1</div></div><div class="card metric"><div class="label">Active</div><div class="value" id="medActive">0</div></div><div class="card metric"><div class="label">Transfers</div><div class="value" id="medTransfers">0</div></div><div class="card metric"><div class="label">Teams on site</div><div class="value">6</div></div></div>
+<div class="panel" style="margin-top:16px"><h3>Medical call log</h3><table class="table"><thead><tr><th>Location</th><th>Patient</th><th>Status</th><th>Hospital</th><th></th></tr></thead><tbody id="medRows"></tbody></table></div></section>
+<section class="view" id="map"><div class="title"><div><h1>Live Map</h1><p>Colour-coded pins for incidents, guards, medical teams and traffic posts.</p></div><button class="primary" onclick="openIncident()">+ Log incident</button></div>
+<div class="panel"><div class="mapbox" id="mapBox"></div><div class="legend"><span><i class="pin red"></i>Incident</span><span><i class="pin g"></i>Security guard</span><span><i class="pin b"></i>Medical team</span><span><i class="pin t"></i>Traffic post</span></div></div></section>
+<section class="view" id="audit"><div class="title"><div><h1>Audit Log</h1><p>Every state-changing action is recorded with user, time, IP and device.</p></div><span class="chip">Read only</span></div>
+<div class="panel"><table class="table"><thead><tr><th>Time</th><th>User</th><th>IP</th><th>Device</th><th>Action</th></tr></thead><tbody id="auditRows"></tbody></table></div></section>
+
+<!-- 8-Step Event Creation Wizard Modal -->
+<div class="modal" id="modal">
+  <div class="modalbox" style="max-width:640px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+      <div>
+        <h2 id="wizardTitle" style="margin:0;">Create an XCESS event</h2>
+        <p id="wizardSubtitle" style="color:var(--muted); font-size:13px; margin:4px 0 0;">Step 1 of 8: Basic Event Information</p>
+      </div>
+      <span class="chip" id="wizardBadge">Draft</span>
+    </div>
+
+    <div id="wizardBody" style="max-height:65vh; overflow-y:auto; padding-right:4px;">
+      <!-- Dynamically injected wizard steps via app.js -->
+    </div>
+
+    <div class="modalactions" style="margin-top:20px; justify-content:space-between;">
+      <button class="secondary" id="wizardBackBtn" onclick="wizardBack()" style="display:none;">Back</button>
+      <div style="display:flex; gap:8px; margin-left:auto;">
+        <button class="secondary" onclick="closeModal()">Cancel</button>
+        <button class="primary" id="wizardNextBtn" onclick="wizardNext()">Continue to event setup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="incModal"><div class="modalbox"><h2>Log an incident</h2><p style="color:var(--muted)">Reports made while offline are saved on the device and sync automatically.</p>
+<div class="field"><label>Type</label><select id="incType"><option>Theft</option><option>Crowd pressure</option><option>Medical</option><option>Fire</option><option>Congestion</option><option>Emergency</option></select></div>
+<div class="field"><label>Zone</label><select id="incZone"></select></div>
+<div class="modalactions"><button class="secondary" onclick="closeModalIncident()">Cancel</button><button class="primary" onclick="submitIncident()">Submit report</button></div></div></div>
+<div class="login show" id="login"><div class="loginbox"><div class="logo" style="padding:0 0 6px">XC<span>ESS</span></div><p style="color:var(--muted);margin:0 0 14px">Sign in to your operations workspace</p>
+<noscript><p style="color:#ffbf3f;font-size:13px">Scripts are blocked in this viewer. Open this file in Chrome or Safari.</p></noscript><div id="step1"><div class="field"><label>Role</label><select id="loginRole"><option value="organiser">Event Director</option><option value="command">JOC Commander (MFA)</option><option value="safety">Safety Officer (MFA)</option><option value="security">Security Supervisor</option><option value="traffic">Traffic Supervisor</option></select></div>
+<div class="field"><label>Email</label><input id="loginEmail" value="john@xcess.co.za"></div><button class="primary" style="width:100%" onclick="doLogin()">Continue</button></div>
+<div id="step2" style="display:none"><p style="color:var(--muted);font-size:13px">Multi-factor authentication is required for this role. Enter the 6-digit code sent to your device.</p><div class="field"><input id="mfaCode" maxlength="6" placeholder="6-digit code"></div><button class="primary" style="width:100%" onclick="verifyMFA()">Verify &amp; sign in</button><p style="color:var(--muted);font-size:11px;margin-top:10px">Demo code: 123456</p></div><p style="color:var(--muted);font-size:11px;margin:14px 0 0;text-align:center">Buttons not responding? Open this page in Chrome or Safari, not inside WhatsApp, Gmail or Drive.</p></div></div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body></html>
